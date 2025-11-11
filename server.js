@@ -34,6 +34,14 @@ async function madrashaServer() {
 
     const classesCollection = client.db("madrashaDB").collection("classes");
 
+    // Class POST API
+    app.post("/classes", async (req, res) => {
+      const body = req.body;
+      const result = await classesCollection.insertOne(body);
+      console.log("Post class Data: ", result);
+      res.send(result);
+    });
+
     // Send a ping to confirm a successful connection
     await client.db("admin").command({ ping: 1 });
     console.log("Madrasha Server successfully connected to MongoDB!");
