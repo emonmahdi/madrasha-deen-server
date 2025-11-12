@@ -2,7 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const app = express();
 const dotenv = require("dotenv");
-const { MongoClient, ServerApiVersion } = require("mongodb");
+const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
 
 const PORT = process.env.PORT || 5000;
 
@@ -33,12 +33,63 @@ async function madrashaServer() {
     await client.connect();
 
     const classesCollection = client.db("madrashaDB").collection("classes");
+    const admissionCollection = client
+      .db("madrashaDB")
+      .collection("admissions");
+
+    app.get("/classes/:id", async (req, res) => {
+      try {
+        const id = req.params.id;
+        const query = { _id: new ObjectId(id) };
+        const result = await classesCollection.findOne(query);
+
+        if (!result) {
+          return res.status(404).send("Class not found");
+        }
+
+        res.status(200).send(result);
+      } catch (error) {
+        res.status(500).send({ message: "Failed to fetch classes data" });
+      }
+    });
+
+    // Class GET API
+    app.get("/classes", async (req, res) => {
+      try {
+        const result = await classesCollection.find().toArray();
+        res.status(200).json(result);
+      } catch (error) {
+        res.status(500).send({ message: "Failed to fetch classes" });
+      }
+    });
 
     // Class POST API
     app.post("/classes", async (req, res) => {
       const body = req.body;
       const result = await classesCollection.insertOne(body);
       console.log("Post class Data: ", result);
+      res.send(result);
+    });
+
+    // Post Admission API
+    app.post("/admissions", async (req, res) => {
+      const admissionData = req.body;
+
+      try {
+        const result = await admissionCollection.insertOne(admissionData);
+        console.log(result);
+        res.status(200).send(result);
+      } catch (error) {
+        console.log("Failed to admission post", err);
+        res.status(500).json({ message: "Failed to submit admission" });
+      }
+    });
+
+    // GET API Admission Using Email query
+    app.get("/admissions", async (req, res) => {
+      const email = req.query.email;
+      const query = email ? { userEmail: email } : {};
+      const result = await admissionCollection.find(query).toArray();
       res.send(result);
     });
 
