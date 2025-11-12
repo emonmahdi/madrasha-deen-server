@@ -93,6 +93,38 @@ async function madrashaServer() {
       res.send(result);
     });
 
+    // GET All Admissions (for Admin)
+    app.get("/admissions", async (req, res) => {
+      try {
+        const result = await admissionCollection.find().toArray();
+        res.send(result);
+      } catch (error) {
+        res.status(500).send({ message: "Failed to fetch admission data" });
+      }
+    });
+
+    // Update Admission Status
+    app.patch("/admissions/:id", async (req, res) => {
+      try {
+        const id = req?.params?.id;
+        const { status } = req.body;
+        const query = { _id: new ObjectId(id) };
+
+        const result = await admissionCollection.updateOne(query, {
+          $set: {
+            status,
+          },
+        });
+
+        if (result.modifiedCount === 0) {
+          res.status(400).send({ message: "NO Admission Found" });
+        }
+        res.send({ message: "Status updated successfully" });
+      } catch (error) {
+        res.status(500).send({ message: "Failed to update admission" });
+      }
+    });
+
     // Send a ping to confirm a successful connection
     await client.db("admin").command({ ping: 1 });
     console.log("Madrasha Server successfully connected to MongoDB!");
