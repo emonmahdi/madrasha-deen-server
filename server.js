@@ -15,7 +15,8 @@ app.use(cors());
 
 var admin = require("firebase-admin");
 
-var serviceAccount = require("./firebase-admin-key.json");
+// var serviceAccount = require("./firebase-admin-key.json");
+var serviceAccount = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT);
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
