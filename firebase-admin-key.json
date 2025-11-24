@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "madrasha-deen-app",
+  "private_key_id": "6a8aa1e5ad0d9a4911e829620ee8df1b9a356cce",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQC5Y0pPcCOwkKL9\nT7aNx26O4y/80bHTypi5fcut3f3GVxsff4yNNqqiidDh5DXkedCTnJ+8K/mf567c\nk1uyYhpUI/6Bqs4LlpnTabvFnluu6Uq1YTJTfVzdvde17cJrTJVwE7pzsKO6Xun2\nKVohl0+0BeTosCfE2yGhkcz5AwIJveTgSaH1um1yS/7I5u2JAGolotRXm/o4nkMC\nmHpftyAB0CKvdQT2Z6rWi+LPgKqFXfK7/gw8EuD/pum1MlkeO0oriljgOcZyfnYK\nDsykKI9bEj4P4f0dhuZD2w5VMLFOQxBDrljcz7c306Kpfo6qO8nlk62Xe0vSQL3d\nr0p1G6xdAgMBAAECggEALI8nPhNB3M9TAchOZGMWWY1VTDL5x2J3lYQdN/f25pyq\ntgYyGgIU/vbZqGXyJy25WrWHdlLqj8r/7mAT5vsqAWXaZz/PAR2McTKFkcEXn+HO\nlWycjFFCSED4b2/Lrn8snxD63JJNND9ahFKZqZ/FJkvRYrVuhaQ2/+77wbF9pKnh\nFwJC+jg8qDWrD5WmlqWpxr4E7hl7otb8O75CIA1IGdhAOpuPI8NDXhWUrZQNcX+s\nRe5KeeOPO5PKNk3Tm2bf56Y+nGxJKlT+/lvR5u8qEcrIHYV2lnBx7aNF29uaKMQx\n/Syjr0Ua97iAOCs+51tx6nXjSD01i/cBml+uZtI6+QKBgQDtETjckS0K+vqqG/EB\nDngfuaVLa2qc6pbK2WOASFFx3vh7eZ6xJPcAO9jYMcZZcpLGOzCPoiBsHzBZi6wO\nskjWpoUE5K3v2XsqU9n0WvBFY5IhSSkfGiif5gW6vNrdllJFQkNe/xGAP7z+nNpe\noWPEffxt0KXwjZuzhwZ7WFVlhQKBgQDIMX77WTrCWxEqNLo+sN2c9AtapOX1Ajit\nnOxAwKjbpIl5MjExyTfltb889g0/nT9mtOuxIcLzdWrQA24aARnWEK1J5U67C5Fv\ne+YHPKkL/vRI5QF8Zz4CZpseBPY/Kx1D+g7PqYFp1/i9H3ckFXc3wgKSMNfSdohG\nHCYb21CW+QKBgHFa/85v2JLciYlXjPjNW2EIGuKiPTtE7M+X/Pz1F4SUckpQUDIy\nE61X8IsH2ekhYM9KtCCqDEjG7Q6UO7RXSX7h5s79LbJ3Um5d4+T0qtjzEIe7/N6z\nWmOC0JCHBzxXSYV2dtJwsoSZdZxlkgEXuKXW/CHiV8ZbX+0LDm1iQoslAoGAGWGV\nHN7qQTv0iCpZNpuL7VtPmTVw5kha0UAk/+ytO/O3bkM703kUei45ycvUUC1qnWXw\nv+ts4RsQ6MCWk/txwB8rKURGYBaOYNkPh/lb4WZ4qElIj/Iy/XDu17Z/VfDsa/Ln\nL9Lo0neMVMYJf+ysycfyNYC1zDw0+NaWyk9a/1kCgYB5Jb7FL4Cpvnnyfr18rKnY\nbkfsePXQVolx/fo/ANl9uY+Bwi2OjdMS2lfxOog9Idtc9IDVz7JrpBQ3ZvCsW2ZO\nnxR3eFK4CZ5r/QFIzmuQrw3C0dmTSFZFaHt+eO+mP1CpSk7LKJmY6+VjPB1FV7VS\nQalfSsbwVULmZs0MpNYSRw==\n-----END PRIVATE KEY-----\n",
+  "client_email": "firebase-adminsdk-fbsvc@madrasha-deen-app.iam.gserviceaccount.com",
+  "client_id": "106643243513176729301",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-fbsvc%40madrasha-deen-app.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}

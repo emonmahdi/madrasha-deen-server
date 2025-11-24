@@ -12,6 +12,15 @@ dotenv.config();
 app.use(express.json());
 app.use(cors());
 
+
+var admin = require("firebase-admin");
+
+var serviceAccount = require("./firebase-admin-key.json");
+
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
+});
+
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.ebn1vec.mongodb.net/madrashaDB?appName=Cluster0`;
 
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
@@ -36,6 +45,27 @@ async function madrashaServer() {
     const admissionCollection = client
       .db("madrashaDB")
       .collection("admissions");
+
+    // firebase admin token verify
+    const verifyToken = async (req, res, next) => {
+      const authHeader = req.headers.authorization;
+      // console.log(authHeader);
+      if (!authHeader) {
+        return res
+          .status(401)
+          .send({ message: "Unauthorized - No token found" });
+      }
+
+      const token = authHeader.split(" ")[1];
+
+      try {
+        const decoded = await admin.auth().verifyIdToken(token);
+        req.tokenEmail = decoded?.email;
+        next();
+      } catch (err) {
+        return res.status(403).send({ message: "Forbidden" });
+      }
+    };
 
     app.get("/classes/:id", async (req, res) => {
       try {
@@ -86,15 +116,20 @@ async function madrashaServer() {
     });
 
     // GET API Admission Using Email query
-    app.get("/admissions", async (req, res) => {
+    app.get("/admissions", verifyToken, async (req, res) => {
       const email = req.query.email;
+
+      if (req.tokenEmail != email) {
+        return res.status(403).send({ message: "Forbidden Access" });
+      }
+
       const query = email ? { userEmail: email } : {};
       const result = await admissionCollection.find(query).toArray();
       res.send(result);
     });
 
-    // GET All Admissions (for Admin)
-    app.get("/admissions", async (req, res) => {
+    // Admin: Get all admissions
+    app.get("/all-admissions", async (req, res) => {
       try {
         const result = await admissionCollection.find().toArray();
         res.send(result);
@@ -104,7 +139,7 @@ async function madrashaServer() {
     });
 
     // Update Admission Status
-    app.patch("/admissions/:id", async (req, res) => {
+    app.patch("/admissions/:id", verifyToken, async (req, res) => {
       try {
         const id = req?.params?.id;
         const { status } = req.body;
